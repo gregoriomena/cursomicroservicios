@@ -15,7 +15,7 @@ import com.gmr.formacion.springboot.app.item.model.service.ItemService;
 public class ItemController {
 
 	@Autowired
-	@Qualifier("itemServiceFeing")
+	@Qualifier("itemServiceRestTemplate")
 	private ItemService itemService;
 	
 	@GetMapping("listar")
