@@ -10,6 +10,6 @@ resilience4j:
         slow-call-duration-threshold: 2s
     instances:      items:         base-config: defecto
   timelimiter:    configs:      defecto:
-        timeout-duration: 6s
+        timeout-duration: 2s
     instances:      items:
         base-config: defecto
