@@ -31,6 +31,8 @@ spring:
             args:
               name: productos
               statusCodes: 500
+              fallbackUri: forward:/api/items/detalle/1/5
+              # No puede ser un método del servicio de productos, ya que si entra en cortocircuito, se entraría en un bucle infinito al llamarse constantemente
           - StripPrefix=2
           - EjemploCookie=Hola mi mensaje personalizado, usuario, AndresGuzman
       - id: servicio-items
