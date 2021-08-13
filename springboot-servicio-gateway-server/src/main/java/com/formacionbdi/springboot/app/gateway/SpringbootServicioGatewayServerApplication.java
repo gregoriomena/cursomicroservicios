@@ -1,4 +1,4 @@
-package com.gmr.formacion.springboot.app.gateway;
+package com.formacionbdi.springboot.app.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
