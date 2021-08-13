@@ -3,6 +3,7 @@ package com.gmr.formacion.springboot.app.productos.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import com.gmr.formacion.springboot.app.productos.models.service.IProductoServic
 
 @RestController
 public class ProductoController {
+
+	private static Logger log = org.slf4j.LoggerFactory.getLogger(ProductoController.class);
 
 	@Autowired
 	private IProductoService productoService;
@@ -36,7 +39,10 @@ public class ProductoController {
 
 		try {
 			// El tiempo por defecto en Hystrix es de 1 s
-			Thread.sleep(1000L);
+			long sleepTime = 30000L;
+			log.info("Simulamos peticiones pesadas con un sleep de " + sleepTime);
+			Thread.sleep(sleepTime);
+			log.info("Finaliza el sleep");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
