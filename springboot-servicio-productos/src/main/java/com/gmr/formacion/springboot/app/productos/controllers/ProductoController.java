@@ -1,6 +1,7 @@
 package com.gmr.formacion.springboot.app.productos.controllers;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -33,19 +34,18 @@ public class ProductoController {
 	}
 
 	@GetMapping("/detalle/{id}")
-	public Producto detalle(@PathVariable Long id) {
+	public Producto detalle(@PathVariable Long id) throws InterruptedException {
+
+		// Para probar el CircuitBreaker
+		if (id.equals(10L)) {
+			throw new IllegalStateException("Producto no encontrado");
+		}
+		if (id.equals(20L)) {
+			TimeUnit.SECONDS.sleep(5L);
+		}
+
 		Producto producto = productoService.findById(id);
 		producto.setPort(port);
-
-		//		try {
-		//			// El tiempo por defecto en Hystrix es de 1 s
-		//			long sleepTime = 30000L;
-		//			log.info("Simulamos peticiones pesadas con un sleep de " + sleepTime);
-		//			Thread.sleep(sleepTime);
-		//			log.info("Finaliza el sleep");
-		//		} catch (InterruptedException e) {
-		//			e.printStackTrace();
-		//		}
 
 		return producto;
 	}
