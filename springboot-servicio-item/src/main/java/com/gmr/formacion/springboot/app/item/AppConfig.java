@@ -31,6 +31,8 @@ public class AppConfig {
 							.slidingWindowSize(10)
 							.failureRateThreshold(50)
 							.permittedNumberOfCallsInHalfOpenState(5)
+							.slowCallRateThreshold(50)
+							.slowCallDurationThreshold(Duration.ofSeconds(2L))
 							.waitDurationInOpenState(Duration.ofSeconds(10)).build())
 					.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(3L)).build())
 					.build();
