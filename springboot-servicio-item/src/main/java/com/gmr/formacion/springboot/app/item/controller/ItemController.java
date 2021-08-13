@@ -15,6 +15,8 @@ import com.gmr.formacion.springboot.app.item.model.Item;
 import com.gmr.formacion.springboot.app.item.model.Producto;
 import com.gmr.formacion.springboot.app.item.model.service.ItemService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @RestController
 public class ItemController {
 
@@ -45,6 +47,15 @@ public class ItemController {
 			item.setIdLlamada(idLlamada);
 			return item;
 		}, e -> metodoAlternativo(id, cantidad, e));
+	}
+
+	@CircuitBreaker(name = "items", fallbackMethod = "metodoAlternativo")
+	@GetMapping("detalle2/{id}/{cantidad}")
+	public Item detalleAnotado(@PathVariable Long id, @PathVariable Integer cantidad) {
+		idLlamada++;
+		Item item = itemService.findById(id, cantidad);
+		item.setIdLlamada(idLlamada);
+		return item;
 	}
 
 	public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
