@@ -32,7 +32,8 @@ public class AppConfig {
 							.failureRateThreshold(50)
 							.permittedNumberOfCallsInHalfOpenState(5)
 							.waitDurationInOpenState(Duration.ofSeconds(10)).build())
-					.timeLimiterConfig(TimeLimiterConfig.ofDefaults()).build();
+					.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(3L)).build())
+					.build();
 		});
 	}
 }
