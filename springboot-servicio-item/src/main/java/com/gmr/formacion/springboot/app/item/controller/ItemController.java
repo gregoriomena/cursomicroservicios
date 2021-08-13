@@ -20,6 +20,10 @@ public class ItemController {
 
 	private static Logger logger = org.slf4j.LoggerFactory.getLogger(ItemController.class);
 
+	// Usado sólo para poder ver el número de llamada correspondiente y así
+	// facilitar las pruebas para generar aciertos/fallos y probar CircuitBreaker
+	private static int idLlamada = 0;
+
 	@Autowired
 	private CircuitBreakerFactory cbFactory;
 
@@ -35,8 +39,12 @@ public class ItemController {
 	// @HystrixCommand(fallbackMethod = "metodoAlternativo")
 	@GetMapping("detalle/{id}/{cantidad}")
 	public Item detalle(@PathVariable Long id, @PathVariable Integer cantidad) {
-		return cbFactory.create("items").run(() -> itemService.findById(id, cantidad),
-				e -> metodoAlternativo(id, cantidad, e));
+		idLlamada++;
+		return cbFactory.create("items").run(() -> {
+			Item item = itemService.findById(id, cantidad);
+			item.setIdLlamada(idLlamada);
+			return item;
+		}, e -> metodoAlternativo(id, cantidad, e));
 	}
 
 	public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
@@ -47,6 +55,7 @@ public class ItemController {
 
 		Producto producto = new Producto(id, "Test error", 0.0, new Date(), 9999);
 		Item item = new Item(producto, cantidad);
+		item.setIdLlamada(idLlamada);
 
 		return item;
 	}
