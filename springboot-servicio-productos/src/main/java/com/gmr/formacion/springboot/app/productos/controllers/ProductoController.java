@@ -37,15 +37,15 @@ public class ProductoController {
 		Producto producto = productoService.findById(id);
 		producto.setPort(port);
 
-		try {
-			// El tiempo por defecto en Hystrix es de 1 s
-			long sleepTime = 30000L;
-			log.info("Simulamos peticiones pesadas con un sleep de " + sleepTime);
-			Thread.sleep(sleepTime);
-			log.info("Finaliza el sleep");
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		//		try {
+		//			// El tiempo por defecto en Hystrix es de 1 s
+		//			long sleepTime = 30000L;
+		//			log.info("Simulamos peticiones pesadas con un sleep de " + sleepTime);
+		//			Thread.sleep(sleepTime);
+		//			log.info("Finaliza el sleep");
+		//		} catch (InterruptedException e) {
+		//			e.printStackTrace();
+		//		}
 
 		return producto;
 	}
