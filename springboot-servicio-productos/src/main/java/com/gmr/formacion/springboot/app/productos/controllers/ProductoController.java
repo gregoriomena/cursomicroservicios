@@ -34,6 +34,13 @@ public class ProductoController {
 		Producto producto = productoService.findById(id);
 		producto.setPort(port);
 
+		try {
+			// El tiempo por defecto en Hystrix es de 1 s
+			Thread.sleep(1000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		return producto;
 	}
 }
