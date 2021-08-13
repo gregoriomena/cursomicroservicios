@@ -30,6 +30,7 @@ public class AppConfig {
 					.circuitBreakerConfig(CircuitBreakerConfig.custom()
 							.slidingWindowSize(10)
 							.failureRateThreshold(50)
+							.permittedNumberOfCallsInHalfOpenState(5)
 							.waitDurationInOpenState(Duration.ofSeconds(10)).build())
 					.timeLimiterConfig(TimeLimiterConfig.ofDefaults()).build();
 		});
