@@ -2,7 +2,7 @@ package com.gmr.formacion.springboot.app.productos.models.service;
 
 import java.util.List;
 
-import com.gmr.formacion.springboot.app.productos.models.entity.Producto;
+import com.gmr.formacion.springboot.app.commons.models.entity.Producto;
 
 public interface IProductoService {
 
