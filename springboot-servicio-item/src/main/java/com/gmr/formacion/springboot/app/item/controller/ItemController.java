@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gmr.formacion.springboot.app.commons.models.entity.Producto;
 import com.gmr.formacion.springboot.app.item.model.Item;
-import com.gmr.formacion.springboot.app.item.model.Producto;
 import com.gmr.formacion.springboot.app.item.model.service.ItemService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -154,7 +154,7 @@ public class ItemController {
 			logger.info("Ejecutando método alternativo TimeLimiter " + e.getMessage());
 
 			idLlamada++;
-			Producto producto = new Producto(id, "Test error", 0.0, new Date(), 9999);
+			Producto producto = new Producto(id, "Test error", 0.0, new Date(), 999);
 			Item item = new Item(producto, cantidad);
 			item.setIdLlamada(idLlamada);
 

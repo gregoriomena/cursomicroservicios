@@ -1,5 +1,7 @@
 package com.gmr.formacion.springboot.app.item.model;
 
+import com.gmr.formacion.springboot.app.commons.models.entity.Producto;
+
 public class Item {
 
 	private Producto producto;

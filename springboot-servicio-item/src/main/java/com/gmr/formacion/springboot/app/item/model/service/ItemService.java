@@ -3,7 +3,7 @@ package com.gmr.formacion.springboot.app.item.model.service;
 import java.util.List;
 
 import com.gmr.formacion.springboot.app.item.model.Item;
-import com.gmr.formacion.springboot.app.item.model.Producto;
+import com.gmr.formacion.springboot.app.commons.models.entity.Producto;
 
 public interface ItemService {
 

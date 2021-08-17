@@ -17,20 +17,33 @@ import javax.persistence.Transient;
 @Table(name = "productos")
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 371222543803016174L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private Double precio;
-	
+
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
-	
+
 	@Transient
 	private Integer port;
-	
+
+	public Producto() {
+
+	}
+
+	public Producto(Long id, String nombre, Double precio, Date createAt, int port) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.createAt = createAt;
+		this.port = port;
+	}
+
 	public Long getId() {
 		return id;
 	}
