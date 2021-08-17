@@ -1,13 +1,18 @@
 package com.gmr.formacion.springboot.app.item.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +39,9 @@ public class ItemController {
 	@Autowired
 	@Qualifier("itemServiceRestTemplate")
 	private ItemService itemService;
+
+	@Value("${configuracion.texto}")
+	private String configuracionTexto;
 
 	@GetMapping("listar")
 	public List<Item> listar() {
@@ -76,6 +84,14 @@ public class ItemController {
 			return item;
 		});
 
+	}
+
+	@GetMapping("/obtener-config")
+	public ResponseEntity<?> obtenerConfigurarion(@Value("${server.port}") String puerto){
+		Map<String, String> json = new HashMap<String, String>();
+		json.put("texto", configuracionTexto);
+		json.put("port", puerto);
+		return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
 	}
 
 	public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
