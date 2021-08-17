@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,9 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 public class ItemController {
 
 	private static Logger logger = org.slf4j.LoggerFactory.getLogger(ItemController.class);
+
+	@Autowired
+	private Environment env;
 
 	// Usado sólo para poder ver el número de llamada correspondiente y así
 	// facilitar las pruebas para generar aciertos/fallos y probar CircuitBreaker
@@ -91,6 +95,12 @@ public class ItemController {
 		Map<String, String> json = new HashMap<String, String>();
 		json.put("texto", configuracionTexto);
 		json.put("port", puerto);
+
+		if (env.getActiveProfiles().length > 0 && env.getActiveProfiles()[0].equals("dev")) {
+			json.put("autor.nombre", env.getProperty("configuracion.autor.name"));
+			json.put("autor.email", env.getProperty("configuracion.autor.mail"));
+		}
+
 		return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
 	}
 
