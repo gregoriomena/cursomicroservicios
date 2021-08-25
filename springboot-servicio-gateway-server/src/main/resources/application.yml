@@ -24,6 +24,10 @@ spring:
   cloud:
     gateway:
       routes:
+      - id: servicio-usuarios
+        uri: lb://servicio-usuarios
+        predicates:
+          - Path=/api/usuarios/**
       - id: servicio-productos
         uri: lb://servicio-productos
         predicates:          - Path=/api/productos/**
