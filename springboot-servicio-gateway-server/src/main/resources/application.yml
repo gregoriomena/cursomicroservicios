@@ -28,6 +28,8 @@ spring:
         uri: lb://servicio-usuarios
         predicates:
           - Path=/api/usuarios/**
+        filters:
+          - StripPrefix=2
       - id: servicio-productos
         uri: lb://servicio-productos
         predicates:          - Path=/api/productos/**
