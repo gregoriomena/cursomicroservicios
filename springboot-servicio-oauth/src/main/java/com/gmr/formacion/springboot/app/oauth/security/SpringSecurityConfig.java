@@ -1,4 +1,4 @@
-package com.gmr.formacion.springboot.app.oauth;
+package com.gmr.formacion.springboot.app.oauth.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
