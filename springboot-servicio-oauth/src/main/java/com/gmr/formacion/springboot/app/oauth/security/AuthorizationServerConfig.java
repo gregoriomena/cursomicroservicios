@@ -55,12 +55,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	}
 
 	@Bean
-	private JwtTokenStore tokenStore() {
+	public JwtTokenStore tokenStore() {
 		return new JwtTokenStore(accesTokenConverter());
 	}
 
 	@Bean
-	private JwtAccessTokenConverter accesTokenConverter() {
+	public JwtAccessTokenConverter accesTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
 		tokenConverter.setSigningKey("algun_codigo_secreto_aeiou");
 		return tokenConverter;
