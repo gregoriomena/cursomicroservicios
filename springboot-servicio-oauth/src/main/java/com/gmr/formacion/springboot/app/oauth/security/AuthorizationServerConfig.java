@@ -25,19 +25,30 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		super.configure(security);
+		security
+		.tokenKeyAccess("permitAll()") // Acceso a la autentificación inicial
+		.checkTokenAccess("isAuthenticated()") // Acceso a la validación de un token
+		;
 	}
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		super.configure(clients);
+		clients.inMemory().withClient("frontendapp").secret(passwordEncoder.encode("123456")).scopes("read", "write")
+		.authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(3600)
+		.refreshTokenValiditySeconds(3600)
+		// podría añadir todos los clientes que necesite
+		// .and().withClient("movilapp").secret(passwordEncoder.encode("123456")).scopes("read",
+		// "write")
+		// .authorizedGrantTypes("password",
+		// "refresh_token").accessTokenValiditySeconds(3600)
+		// .refreshTokenValiditySeconds(3600)
+		;
 	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
-		endpoints.authenticationManager(authenticationManager)
-		.tokenStore(tokenStore())
+		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore())
 		.accessTokenConverter(accesTokenConverter());
 
 		super.configure(endpoints);
