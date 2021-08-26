@@ -1,4 +1,4 @@
-package com.gmr.formacion.springboot.app.usuarios.commons;
+package com.gmr.formacion.springboot.app.commons.usuarios;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
