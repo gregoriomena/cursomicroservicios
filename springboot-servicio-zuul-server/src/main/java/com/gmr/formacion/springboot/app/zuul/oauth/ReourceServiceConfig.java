@@ -24,10 +24,8 @@ public class ReourceServiceConfig extends ResourceServerConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/security/oauth/token").permitAll()
 		.antMatchers(HttpMethod.GET, "/api/productos/listar", "/api/items/listar", "/api/usuarios/usuarios").permitAll() // Para que todo el mundo pueda ver los listados
 		.antMatchers(HttpMethod.GET, "/api/productos/detalle/{id}", "/api/items/detalle/{id}/{cantidad}", "/api/usuarios/usuarios/{id}").hasAnyRole("ADMIN", "USER")
-		.antMatchers(HttpMethod.POST, "/api/productos/crear", "/api/items/crear", "/api/usuarios").hasRole("ADMIN")
-		.antMatchers(HttpMethod.PUT, "/api/productos/editar/{id}", "/api/items/editar/{id}", "/api/usuarios/{id}").hasRole("ADMIN")
-		.antMatchers(HttpMethod.DELETE, "/api/productos/eliminar/{id}", "/api/items/eliminar/{id}", "/api/usuarios/{id}").hasRole("ADMIN")
-		.antMatchers(HttpMethod.DELETE, "/api/productos/eliminar/{id}", "/api/items/eliminar/{id}", "/api/usuarios/{id}").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/productos/crear", "/api/items/crear", "/api/usuarios/usuarios").hasRole("ADMIN")
+		.antMatchers(HttpMethod.PUT, "/api/productos/editar/{id}", "/api/items/editar/{id}", "/api/usuarios/usuarios/{id}").hasRole("ADMIN")
 		.antMatchers(HttpMethod.DELETE, "/api/productos/eliminar/{id}", "/api/items/eliminar/{id}", "/api/usuarios/usuarios/{id}").hasRole("ADMIN")
 		// Poner el post, put y delete es equivalente a .antMatchers("/api/productos/**", "/api/items/**", "/api/usuarios/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
