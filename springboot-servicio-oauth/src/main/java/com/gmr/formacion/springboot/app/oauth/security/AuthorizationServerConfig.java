@@ -17,6 +17,8 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import com.gmr.formacion.springboot.app.oauth.service.UsuarioService;
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -32,6 +34,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Autowired
 	private Environment env;
+
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -65,7 +70,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore())
 		.accessTokenConverter(accesTokenConverter())
-		.tokenEnhancer(tokenEnhancerChain);
+		.tokenEnhancer(tokenEnhancerChain)
+		.userDetailsService(usuarioService);
 
 		super.configure(endpoints);
 	}
