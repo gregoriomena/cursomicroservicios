@@ -1,5 +1,6 @@
 package com.gmr.formacion.springboot.app.zuul.oauth;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,6 +14,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableResourceServer
 public class ReourceServiceConfig extends ResourceServerConfigurerAdapter {
+
+	@Value("${config.security.oauth.jwt.key}")
+	private String jwtKey;
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -40,7 +44,7 @@ public class ReourceServiceConfig extends ResourceServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accesTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey("algun_codigo_secreto_aeiou"); // Misma llave usada en el servicio oauth (AuthorizationServerConfig)
+		tokenConverter.setSigningKey(jwtKey); // Misma llave usada en el servicio oauth (AuthorizationServerConfig)
 		return tokenConverter;
 	}
 
