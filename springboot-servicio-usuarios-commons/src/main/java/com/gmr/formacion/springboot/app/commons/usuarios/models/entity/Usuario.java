@@ -41,6 +41,8 @@ public class Usuario implements Serializable {
 			@UniqueConstraint(columnNames = { "usuario_id", "rol_id" }) })
 	private List<Rol> roles;
 
+	private Integer intentos;
+
 	public Long getId() {
 		return id;
 	}
@@ -71,6 +73,18 @@ public class Usuario implements Serializable {
 
 	public List<Rol> getRoles() {
 		return roles;
+	}
+
+	public Integer getIntentos() {
+		return intentos;
+	}
+
+	public void setIntentos(Integer intentos) {
+		this.intentos = intentos;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
 	}
 
 }
