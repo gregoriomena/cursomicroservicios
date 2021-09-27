@@ -1,6 +1,7 @@
 package com.gmr.formacion.springboot.app.zuul.oauth;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -74,7 +75,7 @@ public class ReourceServiceConfig extends ResourceServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accesTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey(jwtKey); // Misma llave usada en el servicio oauth (AuthorizationServerConfig)
+		tokenConverter.setSigningKey(Base64.getEncoder().encodeToString(jwtKey.getBytes())); // Misma llave usada en el servicio oauth (AuthorizationServerConfig)
 		return tokenConverter;
 	}
 
