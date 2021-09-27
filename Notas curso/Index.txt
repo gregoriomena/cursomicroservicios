@@ -1,2 +1,3 @@
 Iniciamos nuevo módulo: Sección 11: Base de Datos MySQL: configurando MySQL
 Iniciamos nuevo módulo: Sección 12: Base de Datos PostgreSQL: configurando en
+Iniciamos nuevo módulo: Sección 13: Trazabilidad distribuida con Spring Cloud Sleuth y Zipkin
