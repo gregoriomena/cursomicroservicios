@@ -1,1 +1,2 @@
 Iniciamos nuevo módulo: Sección 11: Base de Datos MySQL: configurando MySQL
+Iniciamos nuevo módulo: Sección 12: Base de Datos PostgreSQL: configurando en
