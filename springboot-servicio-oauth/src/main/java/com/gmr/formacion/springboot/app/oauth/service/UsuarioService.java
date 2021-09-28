@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import com.gmr.formacion.springboot.app.commons.usuarios.models.entity.Usuario;
 import com.gmr.formacion.springboot.app.oauth.clients.UsuarioFeignClient;
 
+import brave.Tracer;
+
 @Service
 public class UsuarioService implements UserDetailsService, IUsuarioService {
 
@@ -25,12 +27,16 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 	@Autowired
 	private UsuarioFeignClient usuarioClient;
 
+	@Autowired
+	private Tracer tracer;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioClient.findByUsername(username);
 
 		if (usuario == null) {
 			logger.error("El usuario " + username + " no existe en BD");
+			tracer.currentSpan().tag("error.mensaje", "El usuario " + username + " no existe en BD - ");
 			throw new UsernameNotFoundException("El usuario " + username + " no existe en BD");
 		}
 
