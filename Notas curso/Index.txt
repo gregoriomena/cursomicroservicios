@@ -3,3 +3,7 @@ Iniciamos nuevo módulo: Sección 12: Base de Datos PostgreSQL: configurando en
 Iniciamos nuevo módulo: Sección 13: Trazabilidad distribuida con Spring Cloud Sleuth y Zipkin
 	- Descargarmos el jar de Zipkin en https://zipkin.io/pages/quickstart.html (latest release)
 	- Por defecto se despliega en el http://your_host:9411/zipkin/ (descrito en https://github.com/openzipkin/zipkin/)
+	- Para instalar RabbitMQ:
+	-- https://rabbitmq.com/-> Get Started -> Download + Installation ->  Chocolatey or Installer  -> Chocolatey
+	-- Ruta por defecto http://localhost:15672/ (el puerto del servidor es 5672, es distinto al de la consola de admin)
+	-- Credenciales guest/guest
