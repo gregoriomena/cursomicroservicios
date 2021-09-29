@@ -18,4 +18,10 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	- Primero vamos a publicar el servidor de configuraciones. Para ello hay que generar el jar: springboot-servicio-config-server>mvnw.cmd clean package
 	- Creamos el fichero Dockfile en el proyecto para configurar la instancia.
 	-- EXPOSE indica el puerto usado, en el caso del servidor de configuración tenemos el 8888
+	- Cuando se tenga creado el fichero, desde el PowerShell, en la ruta donde esté el Dockerfile, ejecutamos: docker build -t config-server:v1 .
+	- Ejecutando "docker images" podremos ver la lista de imágenes y debe aparecer la que hemos creado
+	- Creamos una red donde estarán todos los miscroservicios, MySQL, etc. Para ello ejecutamos:  docker network create nombrered. Por ejemplo: docker network create cursomicroservicios
+	- Lanzamos la imagen:  docker run -p 8888:8888 --name config-server --network cursomicroservicios config-server:v1
+	-- Primero definimos el puerto externo y luego el puero interno (El que configuramos el proyecto)
+	- Para ver todas las acciones que podemos hacer sobre contenedores: docker container COMMAND
 	
