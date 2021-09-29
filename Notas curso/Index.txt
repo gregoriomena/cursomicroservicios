@@ -7,3 +7,9 @@ Iniciamos nuevo módulo: Sección 13: Trazabilidad distribuida con Spring Cloud 
 	-- https://rabbitmq.com/-> Get Started -> Download + Installation ->  Chocolatey or Installer  -> Chocolatey
 	-- Ruta por defecto http://localhost:15672/ (el puerto del servidor es 5672, es distinto al de la consola de admin)
 	-- Credenciales guest/guest
+	- Para configurar Zipkin con MySQL
+	-- https://zipkin.io/ -> The source code is on GitHub as openzipkin/zipkin -> zipkin-server -> En la documentación de este apartado explica cómo conectarlo a MySQL
+	-- Editamos zipkin.cmd para añadir las variables de entorno de MySQL
+	-- Creamos en MySQL la BD zipkin con utf8 - utf8-bin
+	-- Agregamos el usuairo zipkin con autentificación estandar (con los datos usados en el script .cmd) con todos los permisos sobre Object right (select, update, ...) y nada más
+	-- En github, donde está la documentación de MySQL para Zipkin, en "apply the schema" y luego "schema DDL" podemos obtener el script que hay que ejecutar (poner al principio use zipkin; para que se ejecute en esa BD)
