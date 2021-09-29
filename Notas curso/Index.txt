@@ -14,3 +14,8 @@ Iniciamos nuevo módulo: Sección 13: Trazabilidad distribuida con Spring Cloud 
 	-- Agregamos el usuairo zipkin con autentificación estandar (con los datos usados en el script .cmd) con todos los permisos sobre Object right (select, update, ...) y nada más
 	-- En github, donde está la documentación de MySQL para Zipkin, en "apply the schema" y luego "schema DDL" podemos obtener el script que hay que ejecutar (poner al principio use zipkin; para que se ejecute en esa BD)
 Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores Docker
+	- Tuve varios problemas tras instalarlo y ejecutarlo. Me ayudó seguir estos pasos https://www.adictosaltrabajo.com/2020/06/04/utilizar-docker-con-wsl-2-en-windows-10/ y el enlace de error del propio Docker
+	- Primero vamos a publicar el servidor de configuraciones. Para ello hay que generar el jar: springboot-servicio-config-server>mvnw.cmd clean package
+	- Creamos el fichero Dockfile en el proyecto para configurar la instancia.
+	-- EXPOSE indica el puerto usado, en el caso del servidor de configuración tenemos el 8888
+	
