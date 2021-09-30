@@ -31,4 +31,10 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	- Otros comandos
 	-- docker ps - Lista los containers
 	-- docker logs -f ID_CONTAINER - Mostrar los logs y seguirlo
+	-- Creamos una imagen para MySQL
+	-- En https://hub.docker.com/ se pueden buscar las imágenes disponibles
+	-- En la propia documentación de la imagen, vemos que se instala con docker pull mysql y usaremos la versión 8: docker pull mysql:8
+	-- Para parar el MySQL en local: net stop MySQL80
+	-- docker run -p 3306:3306 --name microservicios-mysql8 --network cursomicroservicios -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=sb_spring_cloud -d mysql:8
 	
+
