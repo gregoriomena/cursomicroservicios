@@ -48,10 +48,15 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	-- docker run -p 8888:8888 --name config-server --network cursomicroservicios -d config-server:v1
 	-- docker run -p 8761:8761 --name servicio-eureka-server --network cursomicroservicios -d servicio-eureka-server:v1
 	-- docker run -p 3306:3306 --name microservicios-mysql8 --network cursomicroservicios -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=sb_spring_cloud -d mysql:8
-	-- docker run -p 5432:5432 --name microservicios-postgres12 --network cursomicroservicios -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=sb_springboot_cloud -d postgres:12-alpine
+	-- docker run -p 5432:5432 --name microservicios-postgres12 --network cursomicroservicios -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=db_springboot_cloud -d postgres:12-alpine
 	-- docker run -P --name servicio-productos --network cursomicroservicios -d servicio-productos:v1
 	-- docker run -p 8090:8090 --name servicio-zuul-server --network cursomicroservicios -d servicio-zuul-server:v1
+	-- docker run -P --name servicio-usuarios --network cursomicroservicios -d servicio-usuarios:v1
 	- Creamos la imagen del servicio Zuul
 	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL: mvnw.cmd clean package -DskipTests
 	-- Genero la imagen: docker build -t servicio-zuul-server:v1 .
 	-- Arrancamos la imagen: docker run -p 8090:8090 --name servicio-zuul-server --network cursomicroservicios -d servicio-zuul-server:v1
+	- Creamos la imagen del servicio Usuarios
+	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL: mvnw.cmd clean package -DskipTests
+	-- Genero la imagen: docker build -t servicio-usuarios:v1 .
+	-- Arrancamos la imagen: docker run -P --name servicio-usuarios --network cursomicroservicios -d servicio-usuarios:v1
