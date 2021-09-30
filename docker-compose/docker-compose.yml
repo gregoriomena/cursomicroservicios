@@ -14,5 +14,24 @@ services:
         restart: always
         networks:
             - cursomicroservicios
+    microservicios-mysql8:
+        image: mysql:8
+        ports:
+            - "3306:3306"
+        restart: always
+        networks:
+            - cursomicroservicios
+        environment:
+            MYSQL_DATABASE: sb_spring_cloud
+            MYSQL_ROOT_PASSWORD: root
+    servicio-productos:
+        image: servicio-productos:v1
+        restart: always
+        networks:
+            - cursomicroservicios
+        depends_on:
+            - config-server
+            - servicio-eureka-server
+            - microservicios-mysql8
 networks:
     cursomicroservicios:

@@ -59,7 +59,8 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	- Creamos la imagen del servicio Usuarios
 	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL: mvnw.cmd clean package -DskipTests
 	-- Genero la imagen: docker build -t servicio-usuarios:v1 .
-	-- Arrancamos la imagen: docker run -P --name servicio-usuarios --network cursomicroservicios -d servicio-usuarios:v1
+	-- Arrancamos la imagen: docker run -P --name servicio-usuarios --network
+	cursomicroservicios -d servicio-usuarios:v1
 	- Creamos la imagen del servicio Oauth
 	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL: mvnw.cmd clean package -DskipTests
 	-- Genero la imagen: docker build -t servicio-oauth:v1 .
@@ -82,4 +83,7 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	- Compopose
 	-- Para finalizar todos los contenedores a la vez: docker stop $(docker ps -q) y para eliminarlas docker rm $(docker ps -aq)
 	-- Creo una carpeta donde poner el fichero docker-compose.yml. Estando en esta carpeta, teniendo ya el fichero configurado, ejecutamos docker-compose up
-	
+	-- Ctrl+c para el docker-compose
+	-- docker-compose down -v (elimina los docker-compose)
+	-- con docker-compose up podemos indicar un servicio. POr ejemplo, antes de levantar productos podemos levantar los otros. Si los levantamos todos juntos dará error porque intentará levantar productos antes de que mysql esté operativo por ejemplo
+	-- con docker-compose logs -f podemos ver los logs
