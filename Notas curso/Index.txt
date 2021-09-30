@@ -64,3 +64,7 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL: mvnw.cmd clean package -DskipTests
 	-- Genero la imagen: docker build -t servicio-oauth:v1 .
 	-- Arrancamos la imagen: docker run -P --name servicio-oauth --network cursomicroservicios -d servicio-oauth:v1
+	- Creamos la imagen del servicio Items
+	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL: mvnw.cmd clean package -DskipTests
+	-- Genero la imagen: docker build -t servicio-items:v1 .
+	-- Arrancamos la imagen: docker run -P --name servicio-items --network cursomicroservicios -d servicio-items:v1
