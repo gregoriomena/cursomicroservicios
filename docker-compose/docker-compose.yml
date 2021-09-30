@@ -33,5 +33,26 @@ services:
             - config-server
             - servicio-eureka-server
             - microservicios-mysql8
+    servicio-items:
+        image: servicio-items:v1
+        restart: always
+        networks:
+            - cursomicroservicios
+        depends_on:
+            - config-server
+            - servicio-eureka-server
+            - servicio-productos
+    servicio-zuul-server:
+        image: servicio-zuul-server:v1
+        ports:
+            - "8090:8090"
+        restart: always
+        networks:
+            - cursomicroservicios
+        depends_on:
+            - config-server
+            - servicio-eureka-server
+            - servicio-productos
+            - servicio-items
 networks:
     cursomicroservicios:
