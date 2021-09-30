@@ -24,4 +24,11 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	- Lanzamos la imagen:  docker run -p 8888:8888 --name config-server --network cursomicroservicios config-server:v1
 	-- Primero definimos el puerto externo y luego el puero interno (El que configuramos el proyecto)
 	- Para ver todas las acciones que podemos hacer sobre contenedores: docker container COMMAND
+	- Para listar todos los contenedores activos es docker container ls -a (debemos poner -a para que liste todos, no sólo los activos)
+	- Creamos la imagen para eureka-server: docker build -t servicio-eureka-server:v1 .
+	- Y lo instanciamos: docker run -ti --init -p 8761:8761 --name servicio-eureka-server --network cursomicroservicios servicio-eureka-server:v1
+		-- Con el -ti --init consigo que funcione el Ctrl + c en la consola para parar el proceso
+	- Otros comandos
+	-- docker ps - Lista los containers
+	-- docker logs -f ID_CONTAINER - Mostrar los logs y seguirlo
 	
