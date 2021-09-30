@@ -39,5 +39,16 @@ Iniciamos nuevo módulo: Sección 14: Desplegando Microservicios en Contenedores
 	- Creamos una imagen para PostgreSQL (La buscamos en hub.docker)
 	-- docker pull postgres:12-alpine
 	-- docker run -p 5432:5432 --name microservicios-postgres12 --network cursomicroservicios -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=sb_springboot_cloud -d postgres:12-alpine
+	- Creamos la imagen del servicio de productos
+	-- No exponemos el puerto porque en el caso de productos es dinámico
+	-- Al compilar saltamos los tests, ya que no podrá conectar a MySQL
+	-- Genero la imagen: docker build -t servicio-productos:v1 .
+	-- Arrancamos la imagen, como el puerto es dinámico ponemos -P: docker run -P --name servicio-productos --network cursomicroservicios -d servicio-productos:v1
+	- Levantar todas las imágenes hasta ahora
+	-- docker run -p 8888:8888 --name config-server --network cursomicroservicios -d config-server:v1
+	-- docker run -p 8761:8761 --name servicio-eureka-server --network cursomicroservicios -d servicio-eureka-server:v1
+	-- docker run -p 3306:3306 --name microservicios-mysql8 --network cursomicroservicios -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=sb_spring_cloud -d mysql:8
+	-- docker run -p 5432:5432 --name microservicios-postgres12 --network cursomicroservicios -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=sb_springboot_cloud -d postgres:12-alpine
+	-- docker run -P --name servicio-productos --network cursomicroservicios -d servicio-productos:v1
 	
 
